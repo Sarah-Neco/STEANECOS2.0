@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a1423">
+  <title>STEAM — Cozy Redesign</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-page="home">
+        <span class="brand-symbol">✿</span>
+        <div class="brand-text">
+          <span>STEAM</span>
+          <small>COZY EDITION</small>
+        </div>
+      </a>
+
+      <div class="sidebar-label">NAVEGAÇÃO</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-page="home"><span class="nav-icon">🏠</span>Início</button>
+        <button class="nav-item" data-page="explore"><span class="nav-icon">🔍</span>Explorar jogos</button>
+        <button class="nav-item" data-page="library"><span class="nav-icon">📚</span>Biblioteca <span class="nav-pill" id="sideLibCount">0</span></button>
+        <button class="nav-item" data-page="wishlist"><span class="nav-icon">💖</span>Lista de desejos <span class="nav-pill pink" id="sideWishCount">0</span></button>
+        <button class="nav-item" data-page="cart"><span class="nav-icon">🛒</span>Carrinho <span class="nav-pill green" id="sideCartCount">0</span></button>
+      </nav>
+
+      <div class="sidebar-label secondary-label">CATEGORIAS </div>
+      <div class="side-tags">
+        <button data-quick-cat="Aventura">🐾 Aventura</button>
+        <button data-quick-cat="Simulação">🏡 Simulação</button>
+        <button data-quick-cat="RPG">⭐ RPG</button>
+        <button data-quick-cat="Ação">✨ Ação</button>
+        <button data-quick-cat="Terror">👻 Foforror</button>
+        <button data-quick-cat="Estratégia">🧩 Estratégia</button>
+      </div>
+
+      <div class="sidebar-label secondary-label">CONFIGURAÇÕES</div>
+      <nav class="side-nav">
+        <button class="nav-item" data-page="settings"><span class="nav-icon">⚙️</span>Preferências</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="mini-profile">
+          <span class="avatar">🌸</span>
+          <span>
+            <b>Gamer</b>
+            <small class="status-online">● Online • Nível 42</small>
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="history-back-btn" id="globalBackBtn" disabled title="Voltar uma página">
+            ← Voltar
+          </button>
+          <div class="topbar-links">
+            <button data-page="home" class="top-link active">LOJA</button>
+            <button data-page="explore" class="top-link">CATÁLOGO</button>
+            <button data-page="library" class="top-link">BIBLIOTECA</button>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <label class="top-search">
+            <span>🔍</span>
+            <input id="globalSearch" type="search" placeholder="Buscar...">
+          </label>
+          <button class="icon-button wish-btn" data-page="wishlist" title="Lista de desejos">
+            💖 <span class="badge-counter" id="topWishBadge">0</span>
+          </button>
+          <button class="icon-button cart-btn" data-page="cart" title="Carrinho de compras">
+            🛒 <span class="badge-counter green" id="topCartBadge">0</span>
+          </button>
+          <div class="top-user"><span class="avatar">🌸</span><span>Jogador</span></div>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <!-- HOME -->
+        <section class="page active" id="home">
+          <div class="welcome-banner">
+            <div>
+              <div class="eyebrow">✨ BEM-VINDO AO SEU CANTINHO DOS JOGOS</div>
+              <h1>Descubra mundos mágicos.</h1>
+              <p class="muted">Uma seleção aconchegante de jogos incríveis para relaxar e se divertir.</p>
+            </div>
+            <div class="banner-stats">
+              <div class="stat-box"><strong>12</strong><span>Jogos</span></div>
+              <div class="stat-box accent"><strong>Até 50%</strong><span>Desconto</span></div>
+            </div>
+          </div>
+
+          <div class="featured-layout">
+            <article class="hero-feature" id="heroFeature">
+              <div class="hero-overlay"></div>
+              <div class="hero-content">
+                <div class="hero-badges">
+                  <span class="feature-kicker" id="heroTag">DESTAQUE DA SEMANA</span>
+                  <span class="hero-genre-pill" id="heroGenre">Aventura</span>
+                </div>
+                <h2 id="heroTitle">Horizon: Beyond</h2>
+                <p id="heroDesc">Explore paisagens extraordinárias e descubra uma nova aventura.</p>
+                <div class="hero-meta">
+                  <span class="rating" id="heroRating">★ 94% Muito positiva</span>
+                  <span>•</span>
+                  <strong class="hero-price" id="heroPrice">R$ 79,90</strong>
+                </div>
+                <div class="hero-cta-row">
+                  <button class="primary-button" id="heroOpenBtn">Ver jogo ✨</button>
+                  <button class="cart-quick-btn" id="heroCartBtn">+ Carrinho</button>
+                </div>
+              </div>
+              <div class="hero-controls">
+                <button class="hero-arrow" id="heroPrev">‹</button>
+                <div class="hero-pagination" id="heroDots"></div>
+                <button class="hero-arrow" id="heroNext">›</button>
+              </div>
+            </article>
+
+            <aside class="featured-side">
+              <div class="side-feature-heading">
+                <span>⭐ QUERIDINHOS DO MOMENTO</span>
+                <button data-page="explore">Ver todos ↗</button>
+              </div>
+              <div id="recommendedList" class="recommended-list"></div>
+            </aside>
+          </div>
+
+          <section class="content-section">
+            <div class="section-title-row">
+              <div><span class="eyebrow">ESPECIAL PARA VOCÊ</span><h2>Destaques</h2></div>
+              <button class="text-link" data-page="explore">Explorar catálogo →</button>
+            </div>
+            <div class="game-grid" id="featuredGrid"></div>
+          </section>
+
+          <section class="promo-strip">
+            <div>
+              <span class="eyebrow">EXPLORE POR CATEGORIA</span>
+              <h2>Encontre seu mundinho favorito.</h2>
+              <p>Filtre rapidinho pelos estilos mais aconchegantes.</p>
+            </div>
+            <div class="category-chips">
+              <button class="chip-purple" data-category="RPG">⭐ RPG</button>
+              <button class="chip-cyan" data-category="Aventura">🐾 Aventura</button>
+              <button class="chip-pink" data-category="Ação">✨ Ação</button>
+              <button class="chip-orange" data-category="Terror">👻 Foforror</button>
+              <button class="chip-green" data-category="Simulação">🏡 Simulação</button>
+              <button class="chip-blue" data-category="Estratégia">🧩 Estratégia</button>
+            </div>
+          </section>
+
+          <section class="content-section">
+            <div class="section-title-row">
+              <div><span class="eyebrow">PROMOÇÕES</span><h2>Ofertinhas Especiais</h2></div>
+              <button class="text-link" data-page="explore">Ver catálogo →</button>
+            </div>
+            <div class="game-grid" id="offersGrid"></div>
+          </section>
+        </section>
+
+        <!-- EXPLORE -->
+        <section class="page" id="explore">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">CATÁLOGO COMPLETO</div>
+              <h1>Explorar jogos</h1>
+              <p class="muted">Use os filtros para encontrar exatamente o que você quer jogar.</p>
+            </div>
+            <span class="result-count" id="resultCount"></span>
+          </div>
+
+          <div class="steam-filter-panel">
+            <div class="filter-row-main">
+              <label class="search-field">
+                <span>🔍</span>
+                <input id="searchInput" type="search" placeholder="Nome do jogo ou palavra-chave...">
+              </label>
+
+              <select id="genreFilter">
+                <option value="">Todos os gêneros</option>
+                <option value="Ação">Ação</option>
+                <option value="Aventura">Aventura</option>
+                <option value="RPG">RPG</option>
+                <option value="Terror">Terror</option>
+                <option value="Estratégia">Estratégia</option>
+                <option value="Simulação">Simulação</option>
+                <option value="Corrida">Corrida</option>
+              </select>
+
+              <select id="priceFilter">
+                <option value="all">Qualquer preço</option>
+                <option value="free">Gratuito para jogar</option>
+                <option value="under30">Até R$ 30,00</option>
+                <option value="under60">Até R$ 60,00</option>
+                <option value="offers">Apenas em oferta</option>
+              </select>
+
+              <select id="sortFilter">
+                <option value="featured">Ordenar: Mais amados</option>
+                <option value="rating">Melhor avaliação</option>
+                <option value="price-low">Menor preço</option>
+                <option value="price-high">Maior preço</option>
+                <option value="name">Nome: A–Z</option>
+              </select>
+            </div>
+
+            <div class="filter-tags-row">
+              <span class="filter-label">Filtros rápidos:</span>
+              <div class="tag-pills" id="tagFilterGroup">
+                <button class="tag-pill active" data-tag-filter="">Todos</button>
+                <button class="tag-pill" data-tag-filter="OFERTA">🏷️ Em Oferta</button>
+                <button class="tag-pill" data-tag-filter="DESTAQUE">🌟 Destaque</button>
+                <button class="tag-pill" data-tag-filter="POPULAR">💖 Popular</button>
+                <button class="tag-pill" data-tag-filter="NOVO">✨ Lançamento</button>
+                <button class="tag-pill" data-tag-filter="INDIE">🧸 Indie</button>
+                <button class="tag-pill" data-tag-filter="GRÁTIS">🎁 Gratuito</button>
+              </div>
+              <button class="clear-filters-btn" id="clearFiltersBtn">Limpar filtros</button>
+            </div>
+          </div>
+
+          <div class="active-filters-bar" id="activeFilters"></div>
+          <div class="game-grid explore-grid" id="exploreGrid"></div>
+        </section>
+
+        <!-- CART -->
+        <section class="page" id="cart">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">SACOLINHA DE COMPRAS</div>
+              <h1>Seu Carrinho</h1>
+              <p class="muted">Confira os jogos que você escolheu levar para a sua biblioteca.</p>
+            </div>
+            <span class="library-count" id="cartHeaderCount">0 itens</span>
+          </div>
+
+          <div class="cart-layout" id="cartLayout">
+            <div class="cart-items-list" id="cartItemsList"></div>
+
+            <aside class="cart-summary-card" id="cartSummaryCard">
+              <h3>Resumo da Sacola</h3>
+              <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">R$ 0,00</span>
+              </div>
+              <div class="summary-line discount-line">
+                <span>Descontinhos</span>
+                <span id="cartDiscount">- R$ 0,00</span>
+              </div>
+              <div class="summary-total">
+                <span>Total estimado</span>
+                <strong id="cartTotal">R$ 0,00</strong>
+              </div>
+              <p class="cart-note">Os jogos vão direto para a sua biblioteca após finalizar a compra! 🌸</p>
+              <button class="primary-button full-button checkout-btn" id="checkoutBtn">
+                💖 Finalizar Compra
+              </button>
+              <button class="secondary-button full-button" data-page="explore">
+                Continuar escolhendo
+              </button>
+            </aside>
+          </div>
+
+          <div class="empty-state hidden" id="cartEmpty">
+            <span>🛒</span>
+            <h3>Sua sacolinha está vazia!</h3>
+            <p>Explore a lojinha e escolha alguns jogos para preencher seu carrinho.</p>
+            <button class="primary-button" data-page="explore">Explorar jogos</button>
+          </div>
+        </section>
+
+        <!-- LIBRARY -->
+        <section class="page" id="library">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">SUA COLEÇÃO PARTICULAR</div>
+              <h1>Biblioteca</h1>
+              <p class="muted">Seus joguinhos salvos e prontos para rodar a qualquer momento.</p>
+            </div>
+            <span class="library-count" id="libraryCount">0 jogos</span>
+          </div>
+
+          <div class="library-toolbar">
+            <div class="library-tabs">
+              <button class="active" data-library-filter="all">Todos os jogos</button>
+              <button data-library-filter="recent">Adicionados recentemente</button>
+              <button data-library-filter="favorites">Na Lista de Desejos</button>
+            </div>
+            <label class="search-field compact-search">
+              <span>🔍</span>
+              <input id="librarySearch" type="search" placeholder="Buscar na biblioteca...">
+            </label>
+          </div>
+
+          <div class="library-content" id="libraryContent"></div>
+        </section>
+
+        <!-- WISHLIST -->
+        <section class="page" id="wishlist">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">MEUS QUERIDINHOS</div>
+              <h1>Lista de desejos</h1>
+              <p class="muted">Guarde aqui os jogos que você está namorando para comprar depois.</p>
+            </div>
+            <span class="library-count" id="wishlistCount">0 jogos</span>
+          </div>
+          <div class="game-grid" id="wishlistGrid"></div>
+          <div class="empty-state hidden" id="wishlistEmpty">
+            <span>💖</span>
+            <h3>Sua listinha está vazia</h3>
+            <p>Clique no coraçãozinho nos cards dos jogos para salvá-los aqui!</p>
+            <button class="primary-button" data-page="explore">Explorar jogos</button>
+          </div>
+        </section>
+
+        <!-- DETAILS -->
+        <section class="page" id="details">
+          <div class="breadcrumbs">
+            <button data-page="home">Início</button><span>/</span>
+            <button data-page="explore">Loja</button><span>/</span>
+            <b id="breadcrumbTitle">Detalhes</b>
+          </div>
+
+          <div class="detail-header">
+            <div>
+              <div class="eyebrow">DETALHES DO JOGO</div>
+              <h1 id="detailTitle">Nome do jogo</h1>
+              <div class="detail-tags" id="detailTags"></div>
+            </div>
+            <button class="back-button" id="detailBackBtn">← Voltar à página anterior</button>
+          </div>
+
+          <div class="detail-layout">
+            <div class="detail-main">
+              <div class="detail-cover" id="detailCover">
+                <div class="detail-cover-shade"></div>
+                <span id="detailCoverTitle"></span>
+              </div>
+              <div class="detail-description">
+                <h3>Sobre este jogo</h3>
+                <p id="detailDescription"></p>
+              </div>
+
+              <!-- REQUISITOS DO SISTEMA -->
+              <div class="requirements-box">
+                <h3>💻 Requisitos do Sistema</h3>
+                <div class="req-grid">
+                  <div class="req-column">
+                    <h4>Mínimos</h4>
+                    <p id="reqMin"><b>SO:</b> Windows 10<br><b>Processador:</b> Intel Core i3 / AMD Ryzen 3<br><b>Memória:</b> 8 GB de RAM<br><b>Placa de vídeo:</b> NVIDIA GTX 960<br><b>Armazenamento:</b> 20 GB disponível</p>
+                  </div>
+                  <div class="req-column">
+                    <h4>Recomendados</h4>
+                    <p id="reqRec"><b>SO:</b> Windows 11<br><b>Processador:</b> Intel Core i5 / AMD Ryzen 5<br><b>Memória:</b> 16 GB de RAM<br><b>Placa de vídeo:</b> NVIDIA RTX 2060<br><b>Armazenamento:</b> 20 GB SSD</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="screenshots-row" id="screenshotsRow"></div>
+            </div>
+
+            <aside class="purchase-panel">
+              <div class="purchase-art" id="purchaseArt"></div>
+              <p class="muted" id="detailShort"></p>
+              <div class="review-line">
+                <span>AVALIAÇÕES</span>
+                <b id="detailRating">★ 94% Muito positiva</b>
+              </div>
+
+              <div class="price-box">
+                <span class="price-label">Adquirir versão digital</span>
+                <div class="price-row" id="detailPriceBox"></div>
+              </div>
+
+              <button class="primary-button full-button" id="primaryActionBtn">Adicionar ao carrinho</button>
+              <button class="secondary-button full-button" id="favoriteButton">💖 Adicionar à lista de desejos</button>
+
+              <div class="info-list">
+                <div><span>Gênero</span><b id="detailGenre"></b></div>
+                <div><span>Desenvolvedora</span><b id="detailDev">Studio</b></div>
+                <div><span>Plataforma</span><b>Windows / SteamOS</b></div>
+                <div><span>Modo</span><b id="detailMode">Um jogador</b></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="page" id="settings">
+          <div class="eyebrow">CUSTOMIZAÇÃO</div>
+          <h1>Preferências</h1>
+          <p class="muted page-intro">Deixe a lojinha do seu jeitinho.</p>
+
+          <div class="settings-card">
+            <div class="settings-heading">
+              <span class="settings-icon">✨</span>
+              <div><h3>Exibição da loja</h3><p>Controle o visual e os elementos exibidos na tela.</p></div>
+            </div>
+            <div class="setting-row"><div><b>Mostrar sugestões na Início</b><p>Exibir carrossel e destaques.</p></div><input type="checkbox" class="toggle" checked data-setting="recommendations"></div>
+            <div class="setting-row"><div><b>Exibir avaliações</b><p>Mostrar estrelas e porcentagens.</p></div><input type="checkbox" class="toggle" checked data-setting="ratings"></div>
+            <div class="setting-row"><div><b>Modo compacto</b><p>Cards menores e menos espaçamento.</p></div><input type="checkbox" class="toggle" data-setting="compact"></div>
+            <div class="setting-row"><div><b>Reduzir animações</b><p>Desativar transições e efeitos visuais.</p></div><input type="checkbox" class="toggle" data-setting="motion"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- TOAST INTERATIVO -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span id="toastMessage"></span>
+    <button class="toast-action hidden" id="toastActionBtn"></button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
